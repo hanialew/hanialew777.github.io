@@ -24,13 +24,20 @@ const mikolaj = add([
     sprite("mikolaj"),
     pos(50,200)])
 
-onUpdate(()=>{
-   if (mikolaj.pos.x<510 && mikolaj.pos.y<350)
-   {
-    mikolaj.pos.x=mikolaj.pos.x+1
-   }
-    else destroy (mikolaj)
-})
+
+    let wprawo = true
+
+
+    mikolaj.onUpdate(() => {
+        
+        if(wprawo && mikolaj.pos.x < 600)
+        mikolaj.pos.x += 1 
+
+        else if(!wprawo && mikolaj.pos.x > 50)
+        mikolaj.pos.x -= 1
+
+        else wprawo ^= true
+    })
 
 onKeyPress("space", ()=> {
     play("muzyka")
